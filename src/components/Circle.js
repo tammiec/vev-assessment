@@ -1,14 +1,22 @@
 import React from 'react';
 
-const Circle = props => {
+const Circle = ({x, y, onTextChange, setCircle, ...props}) => {
   return (
     <g>
-      <circle cx={props.cx} cy={props.cy} r="150px" fill="#529fca" />
-      <foreignObject x={props.cx - 50} y={props.cy - 40} width='100px' height='20px'>
-        <input value={props.cx} type='text' />
+      <circle cx={x} cy={y} r="150px" fill="#529fca" />
+      <foreignObject x={x - 50} y={y - 50} width='100px' height='20px'>
+        <input 
+          value={x} 
+          type='text'
+          onChange={e => onTextChange(setCircle, 'x', e.target.value)}
+        />
       </foreignObject>
-      <foreignObject x={props.cx - 50} y={props.cy + 20} width='100px' height='20px'>
-        <input value={props.cy} type='text' />
+      <foreignObject x={x - 50} y={y + 30} width='100px' height='20px'>
+        <input 
+          value={y} 
+          type='text' 
+          onChange={e => onTextChange(setCircle, 'y', e.target.value)}
+        />
       </foreignObject>
     </g>
   );
