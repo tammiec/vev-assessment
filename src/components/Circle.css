@@ -1,3 +1,7 @@
+.circle-group {
+  z-index: 10;
+}
+
 .circle-text {
   width: 200px;
   height: 200px;

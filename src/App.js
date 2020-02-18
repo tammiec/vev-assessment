@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
-import Draggable from 'react-draggable';
 
 import Circle from './components/Circle';
+import Line from './components/Line';
 
 const App = () =>{
 
@@ -16,12 +16,25 @@ const App = () =>{
     y: 500
   });
 
+  const [lineLength, setLineLength] = useState(0);
+
+  useEffect(() => {
+    setLineLength(Math.sqrt(Math.pow(circle2.x - circle1.x, 2) + Math.pow(circle2.y - circle2.y, 2)));
+  
+  }, [circle1, circle2]);
+
   const onTextChange = (setState, key, val) => {
     setState(prev => ({...prev, [key]: val}));
   };
 
   return (
     <svg className="App">
+      <Line 
+        circle1={circle1} 
+        circle2={circle2} 
+        lineLength={lineLength} 
+        setLineLength={setLineLength} 
+      />
       <Circle 
         circle={circle1}
         onTextChange={onTextChange}
