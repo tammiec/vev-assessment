@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Draggable from 'react-draggable';
 
 import './Circle.css'
 
@@ -14,7 +13,6 @@ const Circle = ({circle, onTextChange, setCircle, ...props}) => {
 
   return (
     <>
-    {/* <Draggable position={circle} onDrag={handleDrag}> */}
       <g>
         <circle cx={circle.x} cy={circle.y} r="100px" fill="#529fca" />
         <foreignObject x={circle.x - 100} y={circle.y - 100} width='200px' height='200px'>
@@ -38,7 +36,6 @@ const Circle = ({circle, onTextChange, setCircle, ...props}) => {
           </div>
         </foreignObject>   
       </g>
-    {/* </Draggable> */}
   </>
   );
 };
