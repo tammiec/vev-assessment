@@ -1,4 +1,27 @@
-.circle-container {
+.circle-text {
+  width: 200px;
   height: 200px;
-  width: 200px
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
+
+.text-container {
+  height: 100px;
+  width: 150px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.text-container p {
+  width: 20%;
+}
+
+.text-container input {
+  width: 75%;
+}
+
