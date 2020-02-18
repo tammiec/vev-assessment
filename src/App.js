@@ -16,32 +16,21 @@ const App = () =>{
     y: 500
   });
 
-  const adjustXPos = (e, circlePos, setCircle, val) => {
-    e.preventDefault();
-    e.stopPropagation();
-    const {x, y} = circlePos;
-    setCircle({x: val, y});
-  };
-
-  const adjustYPos = (e, circlePos, setCircle, val) => {
-    e.preventDefault();
-    e.stopPropagation();
-    const {x, y} = circlePos;
-    setCircle({x, y: val});
+  const onTextChange = (setState, key, val) => {
+    setState(prev => ({...prev, [key]: val}));
   };
 
   return (
     <svg className="App">
       <Circle 
         circle={circle1}
+        onTextChange={onTextChange}
         setCircle={setCircle1}
-        adjustXPos={adjustXPos}
-        adjustYPos={adjustYPos}
       />
       <Circle 
         circle={circle2}
+        onTextChange={onTextChange}
         setCircle={setCircle2}
-        adjustYPos={adjustYPos}
       />
     </svg>
   );

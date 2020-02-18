@@ -3,14 +3,14 @@ import Draggable from 'react-draggable';
 
 import './Circle.css'
 
-const Circle = ({circle, onTextChange, setCircle, adjustXPos, adjustYPos, ...props}) => {
+const Circle = ({circle, onTextChange, setCircle, ...props}) => {
 
-  const handleDrag = (e, position) => {
-    setCircle({ 
-      x: position.x,
-      y: position.y
-    });
-  }
+  // const handleDrag = (e, position) => {
+  //   setCircle({ 
+  //     x: position.x,
+  //     y: position.y
+  //   });
+  // }
 
   return (
     <>
@@ -25,13 +25,13 @@ const Circle = ({circle, onTextChange, setCircle, adjustXPos, adjustYPos, ...pro
               <input 
                 value={circle.x} 
                 type='text'
-                onChange={e => adjustXPos(e, circle, setCircle, e.target.value)}
+                onChange={e => onTextChange(setCircle, 'x', e.target.value)}
               />
               <p>y:</p>
               <input 
                 value={circle.y} 
                 type='text' 
-                onChange={e => adjustYPos(e, circle, setCircle, e.target.value)}
+                onChange={e => onTextChange(setCircle, 'y', e.target.value)}
               />
             </div>
           </div>
