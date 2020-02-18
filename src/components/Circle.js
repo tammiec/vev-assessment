@@ -15,7 +15,7 @@ const Circle = ({circle, onTextChange, setCircle, ...props}) => {
   return (
     <>
     {/* <Draggable position={circle} onDrag={handleDrag}> */}
-      <g className='circle-group'>
+      <g>
         <circle cx={circle.x} cy={circle.y} r="100px" fill="#529fca" />
         <foreignObject x={circle.x - 100} y={circle.y - 100} width='200px' height='200px'>
           <div className='circle-text'>
@@ -24,12 +24,14 @@ const Circle = ({circle, onTextChange, setCircle, ...props}) => {
               <input 
                 value={circle.x} 
                 type='number'
+                min={1}
                 onChange={e => onTextChange(setCircle, 'x', e.target.value)}
               />
               <p>y:</p>
               <input 
                 value={circle.y} 
                 type='number' 
+                min={1}
                 onChange={e => onTextChange(setCircle, 'y', e.target.value)}
               />
             </div>

@@ -24,7 +24,7 @@ const App = () =>{
   }, [circle1, circle2]);
 
   const onTextChange = (setState, key, val) => {
-    setState(prev => ({...prev, [key]: val}));
+    setState(prev => ({...prev, [key]: val ? parseInt(val) : 0 }));
   };
 
   return (

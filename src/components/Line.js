@@ -3,16 +3,21 @@ import React from 'react';
 import './Line.css';
 
 const Line = ({circle1, circle2, onTextChange, lineLength, setLineLength, ...props}) => {
+  console.log('circle2:', circle2)
+  console.log('circle1:', circle1)
   
   return (
     <g className='line-group'>
-      <line x1={circle1.x} y1={circle1.y} x2={circle2.x} y2={circle2.y} stroke="black" pathLength={lineLength} />
-      <foreignObject x={circle2.x - circle1.x} y={circle2.y - circle1.y} height='100px' width='200px'>
-        <input 
-          value={lineLength} 
-          type='number'
-          onChange={e => setLineLength(e.target.value)}
-        />
+      <line x1={circle1.x} y1={circle1.y} x2={circle2.x} y2={circle2.y} stroke="black" />
+      <foreignObject x={(circle1.x + circle2.x) / 2} y={(circle1.y + circle2.y) / 2} height='50px' width='80px'>
+        <div className='line-container'>
+          <input 
+            className='line-input'
+            value={lineLength} 
+            type='number'
+            onChange={e => setLineLength(e.target.value)}
+          />
+        </div>
       </foreignObject>
     </g>
   );
