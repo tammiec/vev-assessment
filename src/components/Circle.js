@@ -3,32 +3,42 @@ import Draggable from 'react-draggable';
 
 import './Circle.css'
 
-const Circle = ({x, y, onTextChange, setCircle, ...props}) => {
+const Circle = ({circle, onTextChange, setCircle, adjustXPos, adjustYPos, ...props}) => {
+
+  const handleDrag = (e, position) => {
+    setCircle({ 
+      x: position.x,
+      y: position.y
+    });
+  }
 
   return (
-    <Draggable>
+    <>
+    {/* <Draggable position={circle} onDrag={handleDrag}> */}
       <g>
-          <circle cx={x} cy={y} r="100px" fill="#529fca" />
-          <foreignObject x={x - 100} y={y - 100} width='200px' height='200px'>
-            <div className='circle-text'>
-              <div className='text-container'>
-                <p>x:</p>
-                <input 
-                  value={x} 
-                  type='text'
-                  onChange={e => onTextChange(setCircle, 'x', e.target.value)}
-                />
-                <p>y:</p>
-                <input 
-                  value={y} 
-                  type='text' 
-                  onChange={e => onTextChange(setCircle, 'y', e.target.value)}
-                />
-              </div>
+        
+        <circle cx={circle.x} cy={circle.y} r="100px" fill="#529fca" />
+        <foreignObject x={circle.x - 100} y={circle.y - 100} width='200px' height='200px'>
+          <div className='circle-text'>
+            <div className='text-container'>
+              <p>x:</p>
+              <input 
+                value={circle.x} 
+                type='text'
+                onChange={e => adjustXPos(e, circle, setCircle, e.target.value)}
+              />
+              <p>y:</p>
+              <input 
+                value={circle.y} 
+                type='text' 
+                onChange={e => adjustYPos(e, circle, setCircle, e.target.value)}
+              />
             </div>
-          </foreignObject>
+          </div>
+        </foreignObject>   
       </g>
-    </Draggable>
+    {/* </Draggable> */}
+  </>
   );
 };
 
