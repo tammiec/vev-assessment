@@ -19,13 +19,15 @@ const App = () =>{
   const [lineLength, setLineLength] = useState(0);
 
   useEffect(() => {
-    setLineLength(Math.sqrt(Math.pow(circle2.x - circle1.x, 2) + Math.pow(circle2.y - circle2.y, 2)));
+    setLineLength(Math.abs(Math.sqrt(Math.pow(circle2.x - circle1.x, 2) + Math.pow(circle2.y - circle2.y, 2))));
   
   }, [circle1, circle2]);
 
   const onTextChange = (setState, key, val) => {
     if (key === 'line') {
-      
+      const diff = val - lineLength;
+      setLineLength(val);
+      setCircle2(prev => ({ ...prev, x: prev.x + diff }));
     } else {
       setState(prev => ({...prev, [key]: val ? parseInt(val) : 0 }));
     }
