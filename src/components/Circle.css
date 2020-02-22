@@ -1,3 +1,7 @@
+.circle:hover {
+  cursor: pointer;
+}
+
 .circle-text {
   width: 200px;
   height: 200px;
