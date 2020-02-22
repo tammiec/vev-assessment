@@ -1,19 +1,28 @@
-import React, { useState } from 'react';
+import React, { useRef } from 'react';
+import './Circle.css';
+const d3 = require('d3');
 
-import './Circle.css'
+const Circle = ({circle, onTextChange, setCircle, onMouseUp, onMouseDown, ...props}) => {
 
-const Circle = ({circle, onTextChange, setCircle, ...props}) => {
-
-  // const handleDrag = (e, position) => {
-  //   setCircle({ 
-  //     x: position.x,
-  //     y: position.y
-  //   });
-  // }
+  // Use useRef to create the function once and hold a reference to it.
+  const handleMouseMove = useRef((e) => {
+    setCircle(position => {
+      const xDiff = position.coords.x - e.pageX;
+      const yDiff = position.coords.y - e.pageY;
+      return {
+        x: position.x - xDiff,
+        y: position.y - yDiff,
+        coords: {
+          x: e.pageX,
+          y: e.pageY,
+        },
+      };
+    });
+  });
 
   return (
     <>
-      <g>
+      <g onMouseDown={e => onMouseDown(e, setCircle, handleMouseMove)} onMouseUp={e => onMouseUp(e, setCircle, handleMouseMove)} >
         <circle cx={circle.x} cy={circle.y} r="100px" fill="#529fca" />
         <foreignObject x={circle.x - 100} y={circle.y - 100} width='200px' height='200px'>
           <div className='circle-text'>

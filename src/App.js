@@ -8,12 +8,14 @@ const App = () =>{
 
   const [circle1, setCircle1] = useState({
     x: 200,
-    y: 200
+    y: 200,
+    coords: {}
   });
 
   const [circle2, setCircle2] = useState({
     x: 500,
-    y: 500
+    y: 500,
+    coords: {}
   });
 
   const [lineLength, setLineLength] = useState(0);
@@ -25,6 +27,7 @@ const App = () =>{
 
   const onTextChange = (setState, key, val) => {
     if (key === 'line') {
+      // NOT COMPLETE
       const diff = val - lineLength;
       setLineLength(val);
       setCircle2(prev => ({ ...prev, x: prev.x + diff }));
@@ -32,6 +35,19 @@ const App = () =>{
       setState(prev => ({...prev, [key]: val ? parseInt(val) : 0 }));
     }
   };
+
+  const handleMouseDown = (e, setState, handleMouseMove) => {
+    const pageX = e.pageX; 
+    const pageY = e.pageY;
+    setState(prev => ({ ...prev, coords: { x: pageX, y: pageY }}));
+    document.addEventListener('mousemove', handleMouseMove.current);
+  };
+
+  const handleMouseUp = (e, setState, handleMouseMove) => {
+    document.removeEventListener('mousemove', handleMouseMove.current);
+    setState(prev => ({ ...prev, coords: {} }));
+  };
+  
 
   return (
     <svg className="App">
@@ -46,11 +62,15 @@ const App = () =>{
         circle={circle1}
         onTextChange={onTextChange}
         setCircle={setCircle1}
+        onMouseDown={handleMouseDown}
+        onMouseUp={handleMouseUp}
       />
       <Circle 
         circle={circle2}
         onTextChange={onTextChange}
         setCircle={setCircle2}
+        onMouseDown={handleMouseDown}
+        onMouseUp={handleMouseUp}
       />
     </svg>
   );
