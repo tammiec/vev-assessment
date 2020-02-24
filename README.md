@@ -11,3 +11,4 @@ It is hosted [here](https://adoring-swanson-4e42a5.netlify.com/).
 
 ## Known Bugs
 - Occasionally, the coordinate calculations on line length change will return `NaN`, which does cause the circle2 component to break. I will continue to investigate this to find a solution as the conditions that cause this bug are still unknown.
+- There is a slight migration in the line length text input when the angle changes
