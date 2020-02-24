@@ -1,5 +1,5 @@
 .circle:hover {
-  cursor: pointer;
+  cursor: grab;
 }
 
 .circle-text {

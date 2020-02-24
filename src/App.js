@@ -21,7 +21,7 @@ const App = () =>{
   const [lineLength, setLineLength] = useState(0);
 
   useEffect(() => {
-    setLineLength(Math.abs(Math.sqrt(Math.pow(circle2.x - circle1.x, 2) + Math.pow(circle2.y - circle2.y, 2))));
+    setLineLength(Math.round(Math.abs(Math.sqrt(Math.pow(circle2.x - circle1.x, 2) + Math.pow(circle2.y - circle1.y, 2)))));
   
   }, [circle1, circle2]);
 

@@ -22,7 +22,7 @@ const Circle = ({circle, onTextChange, setCircle, onMouseUp, onMouseDown, ...pro
     <>
       <g className='circle' onMouseDown={e => onMouseDown(e, setCircle, handleMouseMove)} onMouseUp={e => onMouseUp(e, setCircle, handleMouseMove)} >
         <circle cx={circle.x} cy={circle.y} r="100px" fill="#529fca" />
-        <foreignObject x={circle.x - 100} y={circle.y - 100} width='200px' height='200px'>
+        <foreignObject x={circle.x - 100} y={circle.y - 100} width='200' height='200'>
           <div className='circle-text'>
             <div className='text-container'>
               <p>x:</p>
