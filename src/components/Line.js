@@ -10,12 +10,13 @@ const Line = ({circle1, circle2, setCircle1, setCircle2, lineLength, setLineLeng
   const onLineInputChange = e => {
     if (e.target.value) {
       setLineLength(e.target.value)
-      console.log('e.target.value:', e.target.value)
       // calculate the new coordinates based on distance formula and slope formula
       // based on hardmath's algebraic solution here https://math.stackexchange.com/questions/25286/2d-coordinates-of-a-point-along-a-line-based-on-d-and-m-where-am-i-messing
       const slope = calculateSlope(circle1, circle2);
       const x2 = Math.round(e.target.value / Math.sqrt(Math.pow(slope, 2) + 1)) + circle1.x;
+      console.log('x2:', x2)
       const y2 = Math.round((e.target.value * slope / Math.sqrt(Math.pow(slope, 2) + 1))) + circle1.y;
+      console.log('y2:', y2)
 
       setCircle2(prev => ({ ...prev, x: x2, y: y2 }))
     }
