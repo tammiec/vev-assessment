@@ -22,17 +22,13 @@ const App = () =>{
 
   const [lineLength, setLineLength] = useState(calculateLineLength(circle1.x, circle2.x, circle1.y, circle2.y));
 
-  // useEffect(() => {
-  //   // set line length using distance formula
-  //   setLineLength(calculateLineLength());
-  
-  // }, []);
-
+  // handle text inputs for circles
   const onTextChange = (setState, key, val) => {
     setState(prev => ({...prev, [key]: val ? parseInt(val) : 0 }));
     setLineLength(calculateLineLength(circle1.x, circle2.x, circle1.y, circle2.y));
   };
 
+  // handle drag start and drag end
   const handleMouseDown = (e, setState, handleMouseMove) => {
     const pageX = e.pageX; 
     const pageY = e.pageY;

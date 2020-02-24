@@ -5,6 +5,7 @@ import { calculateLineLength } from '../helpers/helpers';
 
 const Circle = ({circle, otherCircle, setLineLength, onTextChange, setCircle, onMouseUp, onMouseDown, ...props}) => {
 
+  // useRef to create the handleMouseMove function so that it can save a reference to the position
   const handleMouseMove = useRef((e) => {
     setCircle(position => {
       const xDiff = position.coords.x - e.pageX;
