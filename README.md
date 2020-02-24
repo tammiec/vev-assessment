@@ -10,4 +10,4 @@ It is hosted [here](https://adoring-swanson-4e42a5.netlify.com/).
 - react-scripts: 3.3.0
 
 ## Known Bugs
-- Occasionally, the coordinate calculations on line length change will return `NaN`, which does cause the page to break. I will continue to investigate this to find a solution as the conditions that cause this bug are still unknown.
+- Occasionally, the coordinate calculations on line length change will return `NaN`, which does cause the circle2 component to break. I will continue to investigate this to find a solution as the conditions that cause this bug are still unknown.
