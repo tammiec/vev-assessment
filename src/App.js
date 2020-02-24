@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './App.css';
 
 import Circle from './components/Circle';
 import Line from './components/Line';
+
+import { calculateLineLength } from './helpers/helpers';
 
 const App = () =>{
 
@@ -18,16 +20,17 @@ const App = () =>{
     coords: {}
   });
 
-  // const [lineLength, setLineLength] = useState(0);
+  const [lineLength, setLineLength] = useState(calculateLineLength(circle1.x, circle2.x, circle1.y, circle2.y));
 
   // useEffect(() => {
   //   // set line length using distance formula
-  //   setLineLength(Math.round(Math.abs(Math.sqrt(Math.pow(circle2.x - circle1.x, 2) + Math.pow(circle2.y - circle1.y, 2)))));
+  //   setLineLength(calculateLineLength());
   
-  // }, [circle1, circle2]);
+  // }, []);
 
   const onTextChange = (setState, key, val) => {
     setState(prev => ({...prev, [key]: val ? parseInt(val) : 0 }));
+    setLineLength(calculateLineLength(circle1.x, circle2.x, circle1.y, circle2.y));
   };
 
   const handleMouseDown = (e, setState, handleMouseMove) => {
@@ -50,13 +53,13 @@ const App = () =>{
         circle2={circle2} 
         setCircle1={setCircle1}
         setCircle2={setCircle2}
-        // lineLength={lineLength} 
-        // setLineLength={setLineLength} 
-        // onTextChange={onTextChange}
-        // onLineInputChange={onLineInputChange}
+        lineLength={lineLength} 
+        setLineLength={setLineLength} 
       />
       <Circle 
         circle={circle1}
+        otherCircle={circle2}
+        setLineLength={setLineLength}
         onTextChange={onTextChange}
         setCircle={setCircle1}
         onMouseDown={handleMouseDown}
@@ -64,6 +67,8 @@ const App = () =>{
       />
       <Circle 
         circle={circle2}
+        otherCircle={circle1}
+        setLineLength={setLineLength}
         onTextChange={onTextChange}
         setCircle={setCircle2}
         onMouseDown={handleMouseDown}

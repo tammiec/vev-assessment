@@ -27,5 +27,9 @@
 
 .text-container input {
   width: 75%;
+  color: black;
+  background-color: #5bccde;
+  border: none;
+  border-bottom: solid black 1px;
 }
 
