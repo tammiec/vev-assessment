@@ -18,22 +18,16 @@ const App = () =>{
     coords: {}
   });
 
-  const [lineLength, setLineLength] = useState(0);
+  // const [lineLength, setLineLength] = useState(0);
 
-  useEffect(() => {
-    setLineLength(Math.round(Math.abs(Math.sqrt(Math.pow(circle2.x - circle1.x, 2) + Math.pow(circle2.y - circle1.y, 2)))));
+  // useEffect(() => {
+  //   // set line length using distance formula
+  //   setLineLength(Math.round(Math.abs(Math.sqrt(Math.pow(circle2.x - circle1.x, 2) + Math.pow(circle2.y - circle1.y, 2)))));
   
-  }, [circle1, circle2]);
+  // }, [circle1, circle2]);
 
   const onTextChange = (setState, key, val) => {
-    if (key === 'line') {
-      // NOT COMPLETE
-      const diff = val - lineLength;
-      setLineLength(val);
-      setCircle2(prev => ({ ...prev, x: prev.x + diff }));
-    } else {
-      setState(prev => ({...prev, [key]: val ? parseInt(val) : 0 }));
-    }
+    setState(prev => ({...prev, [key]: val ? parseInt(val) : 0 }));
   };
 
   const handleMouseDown = (e, setState, handleMouseMove) => {
@@ -54,9 +48,12 @@ const App = () =>{
       <Line 
         circle1={circle1} 
         circle2={circle2} 
-        lineLength={lineLength} 
-        setLineLength={setLineLength} 
-        onTextChange={onTextChange}
+        setCircle1={setCircle1}
+        setCircle2={setCircle2}
+        // lineLength={lineLength} 
+        // setLineLength={setLineLength} 
+        // onTextChange={onTextChange}
+        // onLineInputChange={onLineInputChange}
       />
       <Circle 
         circle={circle1}
