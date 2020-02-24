@@ -2,9 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import './Line.css';
 
-const Line = ({circle1, circle2, setCircle1, setCircle2,
-  // onTextChange, lineLength, setLineLength, onLineInputChange, 
-  ...props}) => {
+const Line = ({circle1, circle2, setCircle1, setCircle2, ...props}) => {
 
   const [slope, setSlope] = useState(0);
   const [lineLength, setLineLength] = useState(0);
@@ -17,16 +15,15 @@ const Line = ({circle1, circle2, setCircle1, setCircle2,
 
   const onLineInputChange = e => {
     if (e.target.value) {
-      console.log('e.target.value:', e.target.value)
-      const slope = Math.atan((circle1.y - circle2.y) / (circle1.x - circle2.x));
-      console.log('slope:', slope)
-      const x2 = Math.round(circle1.x + (e.target.value * Math.sin(slope)));
-      console.log('x2:', x2)
-      const y2 = Math.round(circle1.y + (e.target.value * Math.cos(slope)));
-      console.log('y2:', y2)
+      setLineLength(e.target.value)
+      // calculate the new coordinates based on distance formula and slope formula
+      // based on hardmath's algebraic solution here https://math.stackexchange.com/questions/25286/2d-coordinates-of-a-point-along-a-line-based-on-d-and-m-where-am-i-messing
+      const slope = (circle1.y - circle2.y) / (circle1.x - circle2.x);
+      const x2 = Math.round(e.target.value / Math.sqrt(Math.pow(slope, 2) + 1)) + circle1.x;
+      const y2 = Math.round((e.target.value * slope / Math.sqrt(Math.pow(slope, 2) + 1))) + circle1.y;
+
       setCircle2(prev => ({ ...prev, x: x2, y: y2 }))
     }
-    // setLineLength(e.target.value)
   };
 
   useEffect(() => {
